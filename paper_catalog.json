@@ -1,0 +1,473 @@
+{
+    "papers": [
+        {
+            "id": "paper_001",
+            "title": "Desafíos para el Perú en el contexto de crisis alimentaria",
+            "authors": [
+                "Mariana Escobar Arango"
+            ],
+            "year": 2023,
+            "venue": "Comisión Hambre Cero, FAO",
+            "doi": "https://www.congreso.gob.pe/Docs/comisiones2021/CM-fiscalizacion-control-hambre-cer/files/desaf%C3%8Dos_para_el_per%C3%9A_en_el_contexto_de_crisis_alimentaria_-_fao.pdf",
+            "filename": "paper6.pdf",
+            "pages": 25,
+            "topics": [
+                "Cambio climático",
+                "COVID-19",
+                "Inseguridad alimentaria",
+                "Malnutrición",
+                "Pobreza"
+            ],
+            "abstract": "El texto describe un contexto crítico de crisis alimentaria impulsado por factores globales como el cambio climático, la pandemia de COVID-19, restricciones comerciales, el encarecimiento de fertilizantes, y el aumento de precios de energía y transporte, agravados por la guerra Rusia-Ucrania y la desigualdad. A nivel mundial (SOFI 2022), 2 300 millones de personas sufrían inseguridad alimentaria moderada o grave en 2021, entre 702 y 828 millones padecían hambre y cerca del 40% no accedía a una dieta saludable, con mayor afectación en mujeres. En el Perú, la crisis se expresa en la triple carga de malnutrición (desnutrición, anemia y obesidad), con 16.6 millones en inseguridad alimentaria moderada o severa, aumento del costo de una dieta saludable y hogares que reducen consumo, recurren a ollas comunes y buscan ingresos adicionales, especialmente las mujeres."
+        },
+        {
+            "id": "paper_002",
+            "title": "Las relaciones entre Seguridad Alimentaria, Cambio Climático y Comercio Internacional",
+            "authors": [
+                "Martin Piñeiro"
+            ],
+            "year": 2011,
+            "venue": "Serie Seguridad Alimentaria: Working Paper Nº 146 | Marzo 2012",
+            "doi": "https://redlatn.flacso.org.ar/wp-content/uploads/2014/07/146_SSA_Pineiro.pdf",
+            "filename": "paper14.pdf",
+            "pages": 22,
+            "topics": [
+                "Seguridad alimentaria",
+                "Cambio climático",
+                "Comercio internacional",
+                "Producción agropecuaria",
+                "Políticas comerciales"
+            ],
+            "abstract": "El texto analiza cómo la seguridad alimentaria, el cambio climático y el comercio internacional se interrelacionan a través de la producción agropecuaria, de modo que cada uno influye sobre los otros. Señala que la seguridad alimentaria depende en parte de la disponibilidad y estabilidad de alimentos, vinculadas a la producción y al comercio, y que en América Latina persisten altos niveles de inseguridad alimentaria pese a mejoras previas y a políticas recientes, mientras el comercio es crucial especialmente para países importadores netos. Explica que el cambio climático afecta negativamente la producción agrícola mediante mayor variabilidad de temperaturas y precipitaciones, pero que la agricultura y el transporte asociado al comercio también generan emisiones que pueden agravar el problema y dar lugar a barreras “verdes” al comercio."
+        },
+        {
+            "id": "paper_003",
+            "title": "The role of trade in pacific food security and nutrition",
+            "authors": [
+                "T.D. Brewer",
+                "N.L. Andrew",
+                "D. Abbott",
+                "R. Detenamo",
+                "E.N. Faaola",
+                "P.V. Gounder",
+                "N. Lal",
+                "K. Lui",
+                "A. Ravuvu",
+                "D. Sapalojang",
+                "M.K. Sharp",
+                "R.J. Sulu",
+                "S. Suvulo",
+                "J.M.M.M. Tamate",
+                "A.M. Thow",
+                "A.T. Wells"
+            ],
+            "year": 2023,
+            "venue": "Global Food Security",
+            "doi": "https://doi.org/10.1016/j.gfs.2022.100670 ",
+            "filename": "paper1.pdf",
+            "pages": 9,
+            "topics": [
+                "Trade liberalization",
+                "Import dependence",
+                "Unhealthy foods",
+                "Noncommunicable diseases",
+                "Global shocks"
+            ],
+            "abstract": "El texto explica que el Pacífico atraviesa una transición nutricional hacia alimentos básicos importados y productos altamente procesados, lo que impulsa una epidemia de enfermedades no transmisibles y debilita la seguridad y soberanía alimentaria. Con datos de comercio de 1995 a 2018 para 18 países y territorios, se observa una creciente dependencia de importaciones —especialmente arroz del Sudeste Asiático, trigo de Australia y más carne y ultraprocesados— mientras las exportaciones relevantes para la dieta son limitadas y algunos rubros tradicionales declinan. El artículo discute cómo la liberalización comercial y choques globales como la COVID-19 y la guerra en Ucrania aumentan la vulnerabilidad regional, y plantea la necesidad de políticas que orienten el comercio hacia dietas más saludables y sistemas alimentarios híbridos con mayor producción local."
+        },
+        {
+            "id": "paper_004",
+            "title": "Globalización alimentaria: la dimensión ética sobre el derecho a alimentarse",
+            "authors": [
+                "Jesús Enrique Ekmeiro-Salvador",
+                "Tanger Rivas Carrero"
+            ],
+            "year": 2024,
+            "venue": "An Venez Nutr",
+            "doi": "https://doi.org/10.54624/2024.37.1.004",
+            "filename": "paper13.pdf",
+            "pages": 18,
+            "topics": [
+                "Agroindustria",
+                "Globalización",
+                "Derecho alimentario",
+                "Desigualdades",
+                "Sostenibilidad"
+            ],
+            "abstract": "El artículo revisa cómo la agroindustria, integrada al proceso de globalización, pasó de abastecer con alimentos locales y estacionales a deslocalizar la producción y expandir el consumo de ultraprocesados, poniendo en tensión la seguridad y la soberanía alimentaria. Mediante un análisis documental de 87 fuentes (1985–2024) extraídas de ocho repositorios, examina dimensiones agrícolas, comerciales, nutricionales y socioculturales, destacando efectos como homogeneización de dietas, pérdida de identidad alimentaria, desigualdades en las cadenas de valor y persistencia del hambre pese a la alta producción. Concluye que se avizoran ajustes al modelo sin romper el paradigma globalizador, impulsados por demandas públicas de “desmercantilizar” el sector para proteger territorio, salud y cultura culinaria, y mejorar las condiciones de quienes trabajan en el campo."
+        },
+        {
+            "id": "paper_005",
+            "title": "La Geografía del comercio alimentario y agrícola: enfoques de políticas para lograr el desarrollo sostenible",
+            "authors": [
+                "FAO"
+            ],
+            "year": 2022,
+            "venue": "El Estado de los mercados de productos básicos agrícolas",
+            "doi": "https://openknowledge.fao.org/server/api/core/bitstreams/1e587f56-4c73-4915-ab5b-ae67a71210f2/content",
+            "filename": "paper11.pdf",
+            "pages": 138,
+            "topics": [
+                "Comercio alimentario",
+                "Redes comerciales",
+                "Ventaja comparativa",
+                "Medio ambiente",
+                "Políticas comerciales"
+            ],
+            "abstract": "El texto presenta la publicación de la FAO (2022) sobre el estado de los mercados de productos básicos agrícolas, centrada en la geografía del comercio alimentario y agrícola y en enfoques de política para lograr el desarrollo sostenible. Señala que el comercio mundial de alimentos ha crecido y se ha transformado, con mayor protagonismo de economías emergentes, y que durante la COVID-19 mostró una resiliencia notable pese a perturbaciones intensas pero generalmente breves. Advierte que la guerra en Ucrania y el riesgo de fragmentación de los mercados aumentan la incertidumbre y las amenazas a la seguridad alimentaria, por lo que se requieren más investigación y políticas que combinen iniciativas multilaterales y acuerdos regionales para apoyar la Agenda 2030."
+        },
+        {
+            "id": "paper_006",
+            "title": "Global food security challenges and its drivers",
+            "authors": [
+                "Máximo Torero Cullen"
+            ],
+            "year": 2023,
+            "venue": "Council document, FAO",
+            "doi": "https://openknowledge.fao.org/server/api/core/bitstreams/fb74f426-787e-409a-bf3e-68b9ed2d4b86/content",
+            "filename": "paper19.pdf",
+            "pages": 15,
+            "topics": [
+                "Food insecurity",
+                "Hunger trends",
+                "Armed conflict",
+                "Climate extremes",
+                "Urbanization"
+            ],
+            "abstract": "El documento actualiza la situación mundial de la seguridad alimentaria y señala que, pese a la recuperación tras la COVID-19, la guerra en Ucrania y otros conflictos han agravado la volatilidad de los mercados de alimentos y energía, frenando los avances contra el hambre. Indica que el hambre y la inseguridad alimentaria siguen por encima de los niveles prepandemia, con fuertes diferencias regionales (especialmente graves en África) y un aumento del costo de una dieta saludable, mientras la inseguridad alimentaria aguda afecta a cientos de millones y se identifican “puntos críticos” que requieren ayuda urgente. Atribuye el deterioro principalmente a conflictos, choques económicos y eventos climáticos extremos —amplificados por pobreza e inequidad—, incorpora la urbanización como tendencia clave con riesgos y oportunidades, y advierte sobre amenazas macroeconómicas en 2024 como crecimiento débil, inflación persistente, deuda elevada y altos costos de importación."
+        },
+        {
+            "id": "paper_007",
+            "title": "The Evolution of Food Security: Where Are We Now, Where Should We Go Next?",
+            "authors": [
+                "Akbari",
+                "M.",
+                "Foroudi",
+                "P.",
+                "Shahmoradi",
+                "M.",
+                "Padash",
+                "H.",
+                "Parizi",
+                "Z.S.",
+                "Khosravani",
+                "A.",
+                "Ataei",
+                "P.",
+                "Cuomo",
+                "M.T."
+            ],
+            "year": 2022,
+            "venue": " Sustainability",
+            "doi": "https://doi.org/10.3390/su14063634",
+            "filename": "Paper2.pdf",
+            "pages": 27,
+            "topics": [
+                "Food security",
+                "Bibliometric review",
+                "Climate change",
+                "Socioeconomic factors",
+                "Policy governance"
+            ],
+            "abstract": "El texto presenta una revisión bibliométrica sobre la evolución de la investigación en seguridad alimentaria, basada en 3169 artículos de Web of Science (1974–2020), y muestra un fuerte crecimiento de publicaciones especialmente después de 2015, con liderazgo de Estados Unidos en producción, citas y colaboración internacional. Mediante análisis de co-ocurrencia y co-citación, identifica cinco clústeres temáticos (desarrollo sostenible, factores socioeconómicos, políticas y gobernanza, estrategias frente a pobreza/desigualdad/hambre y gestión moderna) y cuatro grandes corrientes de investigación (ambiental/sostenibilidad, socioeconómica, cultural y política). Concluye que, pese a su carácter multidimensional, la literatura aún tiene vacíos y recomienda priorizar nuevos enfoques, mejorar indicadores y técnicas de evaluación, y focalizar la identificación de grupos de alto riesgo."
+        },
+        {
+            "id": "paper_008",
+            "title": "Efectos negativos de la globalización sobre la Seguridad Alimentaria en los países latinoamericanos",
+            "authors": [
+                "María Eugenia Arango"
+            ],
+            "year": 2004,
+            "venue": "Revista Ánfora",
+            "doi": "https://dialnet.unirioja.es/descarga/articulo/6121268.pdf",
+            "filename": "paper16.pdf",
+            "pages": 17,
+            "topics": [
+                "Globalización",
+                "Libre mercado",
+                "Seguridad alimentaria",
+                "Pobreza",
+                "Desigualdad"
+            ],
+            "abstract": "El texto sostiene que, pese a la superproducción mundial de alimentos, la pobreza impide el acceso a la comida para cerca de 800 millones de personas y que en América Latina falta un entorno económico favorable para garantizar la seguridad alimentaria familiar y nacional. Afirma que la globalización y la liberalización del comercio, aunque promueven crecimiento a escala mundial, perjudican a países y campesinos pobres por su falta de ventajas comparativas y por el aumento de la desigualdad en la distribución de recursos. Concluye que son necesarias medidas redistributivas y un papel activo del Estado y la cooperación internacional para asegurar el funcionamiento adecuado del sistema alimentario en términos de acceso y distribución."
+        },
+        {
+            "id": "paper_009",
+            "title": "La interdependencia de los derechos en la alimentación",
+            "authors": [
+                "Pier Paolo Pigozzi",
+                "Gabriella Guerrero",
+                "Ana Paula Chávez",
+                "David Proaño"
+            ],
+            "year": 2016,
+            "venue": " V Convocatoria de Investigaciones del Observatorio del Derecho a la Alimentación de América Latina y el Caribe",
+            "doi": "https://openknowledge.fao.org/server/api/core/bitstreams/014fd104-e709-4434-90c0-6ebdaf72acdd/content",
+            "filename": "paper4.pdf",
+            "pages": 41,
+            "topics": [
+                "Antropología",
+                "Interdependencia",
+                "Alimentación",
+                "Malnutrición",
+                "Dignidad"
+            ],
+            "abstract": "El texto sostiene que el derecho a la alimentación es interdependiente con muchos otros derechos humanos (trabajo, asistencia social, salud, educación, libertades y acceso al conocimiento), pero critica que el marco jurídico internacional suela reducir esa relación a una mera instrumentalidad. Propone una noción más robusta de interdependencia basada en la dignidad humana y en aportes de las ciencias sociales, mostrando desde la antropología y la sociología que la alimentación atraviesa identidad, familia, cultura, religión, moralidad, salud y relaciones sociales. A través de un caso de estudio (CREN en Brasil), el documento busca traducir esa visión amplia en pautas prácticas y concluye que erradicar el hambre exige recuperar la idea original de la Declaración Universal: los derechos se realizan mejor en relaciones humanas integrales que en programas aislados."
+        },
+        {
+            "id": "paper_010",
+            "title": "La globalización y las nuevas relaciones de interdependencia compleja en el sistema económico internacional",
+            "authors": [
+                "Ander Jiménez Marcos"
+            ],
+            "year": 1995,
+            "venue": "Realidad: Revista de Ciencias Sociales y Humaninades ",
+            "doi": "https://doi.org/10.5377/realidad.v0i62.4907",
+            "filename": "paper9.pdf",
+            "pages": 14,
+            "topics": [
+                "Globalización",
+                "Neoliberalismo",
+                "Integración regional",
+                "Multinacionales",
+                "Fusiones"
+            ],
+            "abstract": "El texto sostiene que la “globalización” suele entenderse de forma reducida como un fenómeno meramente económico asociado al neoliberalismo, cuando en realidad es un proceso multidimensional que afecta e interconecta las esferas económica, política, social, cultural y ambiental. Explica que tras el fin de la Guerra Fría el sistema internacional pasó de una lógica bipolar y estatocéntrica a otra más multipolar, con pérdida relativa de soberanía estatal, nuevas agendas (comercio, democracia, derechos humanos, medio ambiente) y un resurgimiento de la integración regional bajo un “regionalismo abierto”. En ese contexto, las multinacionales se consolidan como actores clave al aprovechar cambios tecnológicos, financieros y regulatorios, impulsando estrategias globales y una fuerte ola de fusiones para competir en mercados cada vez más interdependientes."
+        },
+        {
+            "id": "paper_011",
+            "title": "Hacer frente a la inflación alta de los precios de los alimentos en aras de la seguridad alimentaria y la nutrición",
+            "authors": [
+                "FAO",
+                "FIDA",
+                "OMS",
+                "PMA",
+                "UNICEF"
+            ],
+            "year": 2025,
+            "venue": "Versión resumida: El estado de la seguridad alimentaria y la nutrición en el mundo",
+            "doi": "https://openknowledge.fao.org/items/1f6c931c-f944-46eb-8662-f95e26699804",
+            "filename": "paper5.pdf",
+            "pages": 40,
+            "topics": [
+                "Hambre mundial",
+                "Inseguridad alimentaria",
+                "Dieta saludable",
+                "Inflación alimentaria",
+                "Políticas económicas"
+            ],
+            "abstract": "El compendio resume el informe 2025 de la FAO, el FIDA, la OMS, el PMA y el UNICEF sobre seguridad alimentaria y nutrición, centrado en cómo afrontar la alta inflación de los precios de los alimentos. Señala que el hambre y la inseguridad alimentaria mundial han disminuido gradualmente desde 2021, con avances en partes de Asia y América Latina, pero con un deterioro persistente en África, mientras el costo de una dieta saludable subió y aún miles de millones no pueden permitírsela. Explica que la inflación alimentaria de 2021-2023 fue impulsada por la COVID-19, la guerra de Ucrania, la energía y factores internos, afectó desproporcionadamente a países de ingresos bajos y a grupos vulnerables, y puede empeorar la malnutrición (incluida la infantil) y frenar el progreso hacia las metas de 2030."
+        },
+        {
+            "id": "paper_012",
+            "title": "Trade, food security and climate change: conceptual linkages and policy implications",
+            "authors": [
+                "Andrea Zimmermann",
+                "Julian Benda",
+                "Heidi Webber",
+                "Yaghoob Jafari"
+            ],
+            "year": 2018,
+            "venue": "Background paper for The State of Agricultural Commodity Markets (SOCO) 2018",
+            "doi": "https://openknowledge.fao.org/server/api/core/bitstreams/d6c8af41-565b-4292-a731-8000574476de/content",
+            "filename": "paper18.pdf",
+            "pages": 50,
+            "topics": [
+                "Trade",
+                "Food security",
+                "Climate change",
+                "Mitigation",
+                "Adaptation"
+            ],
+            "abstract": "El documento de la FAO analiza los vínculos entre cambio climático, comercio agrícola y seguridad alimentaria, destacando que el calentamiento global ya afecta los rendimientos, aumenta plagas y eventos extremos, y podría reducir la producción, elevar la volatilidad de precios y ampliar el riesgo de inseguridad alimentaria. Aunque no hay evidencia concluyente sobre el efecto neto del comercio en las emisiones de GEI, el comercio puede ser clave para la adaptación al permitir que países de altas latitudes con posibles ganancias de productividad exporten excedentes y que países de bajas latitudes compensen pérdidas mediante importaciones, siempre considerando externalidades ambientales e impactos financieros y distributivos. Finalmente, señala que las políticas climáticas nacionales bajo el Acuerdo de París se entrelazan con las reglas de la OMC y requieren coordinación internacional para mitigar el cambio climático sin obstaculizar la libre circulación de alimentos, esencial como medida de adaptación."
+        },
+        {
+            "id": "paper_013",
+            "title": "Los principios del derecho a la alimentación y los acuerdos comerciales internacionales",
+            "authors": [
+                "FAO"
+            ],
+            "year": 1994,
+            "venue": "Las directrices sobre el derecho a la alimentación: documentos informativos y estudios de caso",
+            "doi": "https://www.fao.org/4/a0511s/a0511s01.pdf",
+            "filename": "paper3.pdf",
+            "pages": 177,
+            "topics": [
+                "Derecho alimentación",
+                "Seguridad alimentaria",
+                "Acuerdos comerciales",
+                "OMC",
+                "Política agrícola"
+            ],
+            "abstract": "El texto analiza cómo los acuerdos comerciales internacionales, especialmente los de la OMC surgidos de la Ronda Uruguay, influyen en las políticas agrícolas, la seguridad alimentaria y la realización progresiva del derecho a una alimentación adecuada. Expone el marco jurídico y conceptual del derecho a la alimentación (disponibilidad y accesibilidad, obligaciones mínimas de los Estados y responsabilidades internacionales) y contrasta el enfoque de derechos humanos con el de necesidades básicas, destacando principios como participación, igualdad y rendición de cuentas. Finalmente, se centra en el Acuerdo sobre la Agricultura y plantea si sus normas favorecen o limitan el “espacio normativo” de los Estados para aplicar políticas de seguridad alimentaria, señalando que las distorsiones comerciales (subsidios y aranceles) pueden perjudicar a otros países aunque a veces abaraten alimentos, y que la reforma comercial se considera potencialmente beneficiosa si reduce esas distorsiones."
+        },
+        {
+            "id": "paper_014",
+            "title": "Seguridad Alimentaria y Globalización: Análisis del Impacto del Cambio Climático en el Sistema Alimentario Español",
+            "authors": [
+                "Víctor Martínez Cano"
+            ],
+            "year": 2023,
+            "venue": "Hegoa. Trabajos Fin de Máster",
+            "doi": "https://biblioteca.hegoa.ehu.eus/downloads/21879/%2Fsystem%2Fpdf%2F4927%2FTFM_101_Victor-Martinez.pdf",
+            "filename": "paper10.pdf",
+            "pages": 92,
+            "topics": [
+                "Cambio climático",
+                "Sistema alimentario",
+                "Crisis alimentarias",
+                "Precios alimenticios",
+                "Biodiversidad"
+            ],
+            "abstract": "El texto presenta un Trabajo Fin de Máster que analiza cómo el cambio climático, junto con otros procesos de la crisis ecológica, afecta al sistema alimentario global y al español, y cómo dicho sistema también contribuye al problema al generar una parte importante de las emisiones de gases de efecto invernadero. Señala que las crisis alimentarias recientes han evidenciado vulnerabilidades estructurales en las cadenas de suministro, a menudo agravadas por eventos climáticos extremos, y que la inseguridad alimentaria ya impacta también en países del Norte y en grupos vulnerables. El caso de España se estudia por su alta exposición mediterránea al cambio climático y por el peso del sector agroalimentario (≈11% del PIB), mediante una revisión sistematizada de la literatura y un análisis de precios alimenticios."
+        },
+        {
+            "id": "paper_015",
+            "title": "Transforming land for sustainable food: Emerging contests to property regimes in the Global North",
+            "authors": [
+                "Calo, A.J.", "Sippel, S.R.", "Kay, S.", "Perrin, C.", "Shields, K."
+            ],
+            "year": 2016,
+            "venue": "Elementa",
+            "doi": "https://doi.org/10.1525/elementa.2024.00028",
+            "filename": "paper12.pdf",
+            "pages": 18,
+            "topics": [
+                "Land relations",
+                "Food systems ",
+                "Property regimes",
+                "Sustainability",
+                "Agricultural reform"
+            ],
+            "abstract": "El artículo investiga cómo las relaciones de propiedad y el acceso a la tierra son fundamentales para transformar los sistemas alimentarios hacia la sostenibilidad en el Norte Global. A pesar de la normalización del modelo de propiedad privada, emergen movimientos que desafían estas normas, proponiendo reformas legislativas, modelos de fideicomiso y el uso del poder municipal para reconfigurar las relaciones de tierra. Se argumenta que cualquier transformación significativa en los sistemas alimentarios debe ir acompañada de un cambio en las relaciones de propiedad, adaptándose a contextos geográficos y políticos específicos."},
+        {
+            "id": "paper_016",
+            "title": "Food security, prices, and geopolitical risk: A dynamic panel threshold model",
+            "authors": [
+                "Samer Mehibel",
+                "Reda Hamza Boudjana",
+                "Manuel A. Zambrano-Monserrate",
+                "Amel Bouzid",
+                "Messaoud Lazereg"
+            ],
+            "year": 2025,
+            "venue": "Geopolitics under Globalization",
+            "doi": "https://doi.org/10.21511/gg.06(1).2025.04",
+            "filename": "paper20.pdf",
+            "pages": 16,
+            "topics": [
+                "Food security",
+                "Geopolitical risk",
+                "Inflation",
+                "Commodity prices",
+                "Threshold modeling"
+            ],
+            "abstract": "El artículo analiza cómo el riesgo geopolítico afecta la seguridad alimentaria y la inflación, usando un modelo dinámico de umbral con datos de 40 países (2012–2021) y midiendo la seguridad alimentaria con el GFSI y sus cuatro pilares.  \nLos resultados muestran una relación no lineal: el impacto inflacionario del riesgo geopolítico es estadísticamente significativo y, cuando el índice GPRI supera un umbral de 0.022, la seguridad alimentaria global se debilita de forma sustancial por el aumento de la inflación.  \nAdemás, el estudio encuentra umbrales específicos por pilar (0.28 en asequibilidad, 0.015 en disponibilidad, 0.27 en calidad e inocuidad y 0.032 en sostenibilidad y adaptación) y concluye que mayores tensiones geopolíticas elevan los precios de fertilizantes, alimentos y petróleo, incrementan la incertidumbre inflacionaria y complican la coordinación entre políticas monetarias y fiscales."
+        },
+        {
+            "id": "paper_017",
+            "title": "La seguridad alimentaria y el comercio agroalimentario: América Latina y El Caribe",
+            "authors": [
+                "FAO e IFPRI"
+            ],
+            "year": 2023,
+            "venue": "FAO",
+            "doi": "https://openknowledge.fao.org/handle/20.500.14283/cc8592es",
+            "filename": "paper17.pdf",
+            "pages": 120,
+            "topics": [
+                "Seguridad alimentaria",
+                "Comercio intrarregional",
+                "Subalimentación",
+                "Dieta saludable",
+                "Producción alimentaria"
+            ],
+            "abstract": "América Latina y el Caribe es un actor clave en la producción y el comercio agroalimentario mundial y, aunque tiene recursos para abastecerse y exportar de forma sostenible, el hambre y la inseguridad alimentaria han aumentado con fuerza en la región. El texto plantea que expandir el comercio internacional —especialmente el intrarregional— permitiría mejorar la disponibilidad, el acceso, la variedad y la estabilidad del suministro de alimentos, aprovechando la complementariedad productiva entre países y amortiguando perturbaciones como conflictos, pandemias o eventos climáticos extremos. Sin embargo, persisten grandes diferencias internas (Caribe y Centroamérica importan netamente alimentos clave para dietas saludables mientras parte de Sudamérica exporta), más del 60 % de las importaciones proviene de fuera de la región y existe potencial de crecimiento y sustitución hacia comercio intrarregional en productos como maíz, soja, trigo, carne aviar, harina de soja y lácteos concentrados."
+        },
+        {
+            "id": "paper_018",
+            "title": "Pérdida de soberanía alimentaria: una faceta actual de los países subdesarrollados",
+            "authors": [
+                "Jesús Carlos Morett-Sánchez",
+                "Celsa Cosío-Ruiz"
+            ],
+            "year": 2023,
+            "venue": "Agricultura, Sociedad y Desarrollo",
+            "doi": "https://doi.org/10.22231/asyd.v19i4.1434",
+            "filename": "paper7.pdf",
+            "pages": 28,
+            "topics": [
+                "Soberanía alimentaria",
+                "Dependencia alimentaria",
+                "Inseguridad alimentaria",
+                "Globalización",
+                "Neoextractivismo"
+            ],
+            "abstract": "El texto sostiene que, en la globalización, los países subdesarrollados se alejan del desarrollo porque se ha profundizado su dependencia económica y política, destacando como causa central la pérdida de la capacidad de alimentar a su población con recursos internos. Mediante políticas neoliberales y ajustes estructurales, estos países reorientaron su agricultura hacia exportaciones y abrieron sus mercados a importaciones baratas (a menudo con dumping y subsidios de países ricos), lo que debilitó a los pequeños agricultores, incrementó la inseguridad alimentaria y volvió estructural la falta de soberanía alimentaria, agravada por la COVID-19 y el cambio climático. El artículo concluye que revertir esta tendencia exige un viraje de políticas para priorizar la autosuficiencia y apoyar a la agricultura campesina, que pese a sus limitaciones produce la mayor parte de los alimentos del mundo, frente al dominio de corporaciones transnacionales y el neoextractivismo."
+        },
+        {
+            "id": "paper_019",
+            "title": "Caloric unequal exchange in Latin America and the Caribbean",
+            "authors": [
+                "Fander Falconí",
+                "Jesus Ramos-Martin",
+                "Pedro Cango"
+            ],
+            "year": 2017,
+            "venue": "Ecological Economics",
+            "doi": "http://dx.doi.org/10.1016/j.ecolecon.2017.01.009",
+            "filename": "paper15.pdf",
+            "pages": 10,
+            "topics": [
+                "Unequal exchange",
+                "Terms of trade",
+                "Food self-sufficiency",
+                "Caloric trade",
+                "Diet homogenisation"
+            ],
+            "abstract": "El texto introduce el concepto de “intercambio desigual calórico”, que mide el deterioro de los términos de intercambio de alimentos comparando el costo por caloría de lo exportado e importado, y lo aplica a América Latina y el Caribe con datos de la FAO para 1961–2011/2013. Los resultados muestran que la región exporta cada vez más calorías y a precios relativamente más bajos con el tiempo (aunque en promedio sus calorías exportadas siguen siendo más caras que las importadas), con patrones distintos según el socio comercial, mientras aumenta la dependencia externa en productos clave como cereales pese a ser exportadora neta. Además, la globalización tiende a homogeneizar las dietas, concentrando el consumo en pocos productos, elevando la interdependencia entre países y generando riesgos para la seguridad alimentaria."
+        },
+        {
+            "id": "paper_020",
+            "title": "The new geopolitics of food",
+            "authors": [
+                "Lester R. Brown", "Renee Comet", "Lisa Cherkasky", "Celsa Cosío-Ruiz"
+            ],
+            "year": 2011,
+            "venue": "Foreign Policy",
+            "doi": " https://www.jstor.org/stable/41233423",
+            "filename": "paper8.pdf",
+            "pages": 11,
+            "topics": [ 
+                "Geopolitics",
+                "Food",
+                "Sustainability",
+                "Scholarship",
+                "Digital Archive"
+            ],
+            "abstract": "The New Geopolitics of Food discusses the increasing volatility and scarcity in the global food economy, driven by factors such as population growth, climate change, and water shortages. The article highlights how the world is facing challenges in meeting the growing demand for food, with countries resorting to land acquisitions and long-term supply agreements to secure their food sources. As food scarcity becomes a key driver of global politics, the article warns of potential conflicts and geopolitical tensions arising from the competition for food resources."
+        },
+        {
+            "id": "paper_021",
+            "title": "The geopolitics of food security: barriers to the sustainable development goal of zero hunger",
+            "authors": [
+                "Jiayi Zhou", "Lisa María Dellmuth", "Kevin M. Adams", "Tina-Simone Neset", 
+                "Nina Von Uexkull"
+
+            ],
+            "year": 2020,
+            "venue": "Stockholm International Peace Research Institute",
+            "doi": " https://www.jstor.org/stable/41233423",
+            "filename": "paper21.pdf",
+            "pages": 17,
+            "topics": [
+                "Food Security",
+                "Sustainable Development",
+                "Geopolitics",
+                "Zero Hunger",
+                "Research Collaboration"
+            ],
+            "abstract": "El informe del Stockholm International Peace Research Institute destaca que la seguridad alimentaria está intrínsecamente ligada a la geopolítica, donde la competencia por recursos naturales, el comercio, los conflictos armados y el cambio climático obstaculizan el logro del objetivo de desarrollo sostenible de 'Cero hambre'. A pesar de que la producción global de alimentos supera las necesidades, factores políticos y económicos han llevado a un aumento en el número de personas subalimentadas, que podría alcanzar los 840 millones para 2030. Se enfatiza la necesidad de un análisis más profundo de las dinámicas geopolíticas para abordar eficazmente la inseguridad alimentaria y avanzar hacia la erradicación del hambre."
+        }
+    ]
+}
