@@ -18,7 +18,13 @@
 
 ### Screenshots
 
-> *(Ver `demo/screenshots/` para capturas actualizadas)*
+| Chat | Paper Browser |
+|------|--------------|
+| ![Chat](demo/screenshots/01_chat.png) | ![Paper Browser](demo/screenshots/02_browser.png) |
+
+| Analytics | Configuración |
+|-----------|--------------|
+| ![Analytics](demo/screenshots/03_analytics.png) | ![Settings](demo/screenshots/04_settings.png) |
 
 ---
 
