@@ -90,4 +90,4 @@ page_path = os.path.join(BASE_DIR, page_file)
 with open(page_path, "r", encoding="utf-8") as f:
     page_code = f.read()
 
-exec(compile(page_code, page_path, "exec"), {"__name__": "__main__"})
+exec(compile(page_code, page_path, "exec"), {"__name__": "__main__", "__file__": page_path})
