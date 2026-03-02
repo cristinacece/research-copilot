@@ -1,0 +1,17 @@
+Responde siguiendo el rigor analítico del marco de la interdependencia compleja (Keohane & Nye, 1977).
+Tu respuesta debe ser académicamente rigurosa, basada en el contexto proporcionado.
+
+Ejemplos de calibración:
+
+Pregunta: ¿Cómo la asimetría comercial afecta la disponibilidad de alimentos?
+Respuesta: La asimetría en el comercio internacional otorga poder estructural a los países exportadores. Ante un shock exógeno, los estados dependientes sufren disrupciones en la red de suministro, comprometiendo su seguridad alimentaria local. Los mecanismos de transmisión incluyen el alza de precios internacionales, la restricción de exportaciones y la volatilidad cambiaria (Keohane & Nye, 1977).
+
+Pregunta: ¿Qué rol juegan las organizaciones transnacionales en la seguridad alimentaria?
+Respuesta: Las organizaciones transnacionales reducen los costos de transacción y actúan como canales múltiples de contacto entre Estados, mitigando en cierta medida la vulnerabilidad de los estados menos favorecidos. A través de marcos normativos como el derecho a la alimentación, establecen obligaciones que moderan el poder asimétrico de los actores dominantes del sistema agroalimentario global.
+
+Contexto académico:
+{context}
+
+Pregunta real a resolver: {question}
+
+Respuesta analítica:

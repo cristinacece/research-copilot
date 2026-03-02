@@ -1,0 +1,104 @@
+{
+  "questions": [
+    {
+      "id": "q01",
+      "type": "factual",
+      "question": "¿Cuántas personas sufrían inseguridad alimentaria moderada o grave en 2021 según el informe SOFI?"
+    },
+    {
+      "id": "q02",
+      "type": "factual",
+      "question": "¿Qué porcentaje de la población mundial no tenía acceso a una dieta saludable en 2021?"
+    },
+    {
+      "id": "q03",
+      "type": "factual",
+      "question": "¿Cuál es la definición de soberanía alimentaria según los documentos del corpus?"
+    },
+    {
+      "id": "q04",
+      "type": "factual",
+      "question": "¿Qué factores provocaron el encarecimiento de los fertilizantes según los papers?"
+    },
+    {
+      "id": "q05",
+      "type": "factual",
+      "question": "¿Qué es la triple carga de malnutrición y cómo se manifiesta en el Perú?"
+    },
+    {
+      "id": "q06",
+      "type": "analytical",
+      "question": "¿Cómo influye la dependencia de importaciones agrícolas en la soberanía alimentaria durante una crisis global?"
+    },
+    {
+      "id": "q07",
+      "type": "analytical",
+      "question": "¿De qué manera el cambio climático afecta los sistemas agroalimentarios y la disponibilidad de alimentos?"
+    },
+    {
+      "id": "q08",
+      "type": "analytical",
+      "question": "¿Qué relación existe entre las restricciones al comercio internacional y la seguridad alimentaria de países importadores?"
+    },
+    {
+      "id": "q09",
+      "type": "analytical",
+      "question": "¿Cómo impacta la volatilidad de los precios internacionales de commodities agrícolas en las economías emergentes?"
+    },
+    {
+      "id": "q10",
+      "type": "analytical",
+      "question": "¿Qué rol juegan las políticas de subsidios agrícolas en los países desarrollados sobre la competitividad global?"
+    },
+    {
+      "id": "q11",
+      "type": "synthesis",
+      "question": "Sintetiza los principales mecanismos por los cuales el comercio internacional puede tanto amenazar como fortalecer la seguridad alimentaria."
+    },
+    {
+      "id": "q12",
+      "type": "synthesis",
+      "question": "¿Cuáles son las estrategias más efectivas de adaptación ante el cambio climático en el sector agrícola según el corpus?"
+    },
+    {
+      "id": "q13",
+      "type": "synthesis",
+      "question": "Compara los enfoques de seguridad alimentaria y soberanía alimentaria: ¿son complementarios o contradictorios?"
+    },
+    {
+      "id": "q14",
+      "type": "synthesis",
+      "question": "¿Cómo interactúan el conflicto Rusia-Ucrania, los precios de energía y el acceso a alimentos en países en desarrollo?"
+    },
+    {
+      "id": "q15",
+      "type": "synthesis",
+      "question": "¿Qué evidencia hay sobre el impacto desigual de las crisis alimentarias sobre mujeres y grupos vulnerables?"
+    },
+    {
+      "id": "q16",
+      "type": "edge_case",
+      "question": "¿Hay información en el corpus sobre el rol de la biotecnología en la seguridad alimentaria?"
+    },
+    {
+      "id": "q17",
+      "type": "edge_case",
+      "question": "¿Los papers discuten el impacto de criptomonedas o fintech en el financiamiento agrícola?"
+    },
+    {
+      "id": "q18",
+      "type": "edge_case",
+      "question": "¿Existe información sobre seguridad alimentaria en el contexto de la pandemia de COVID-19?"
+    },
+    {
+      "id": "q19",
+      "type": "edge_case",
+      "question": "¿Se menciona en el corpus el papel del FMI o el Banco Mundial en la seguridad alimentaria?"
+    },
+    {
+      "id": "q20",
+      "type": "edge_case",
+      "question": "¿Qué dicen los papers sobre la relación entre urbanización y seguridad alimentaria en América Latina?"
+    }
+  ]
+}
