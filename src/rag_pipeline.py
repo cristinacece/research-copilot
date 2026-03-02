@@ -119,6 +119,8 @@ def build_pipeline(force: bool = False) -> None:
                 "year":        int(paper.get("year", 0)),
                 "page_number": 0,
                 "section":     "",
+                "venue":       paper.get("venue", ""),
+                "doi":         paper.get("doi", ""),
             }
 
             # Chunk

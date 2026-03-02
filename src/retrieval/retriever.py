@@ -64,6 +64,8 @@ def retrieve(
             "authors":          h.get("authors", ""),
             "year":             h.get("year", 0),
             "page_number":      h.get("page_number", 0),
+            "venue":            h.get("venue", ""),
+            "doi":              h.get("doi", ""),
             "similarity_score": h.get("similarity_score", 0.0),
         })
 

@@ -69,7 +69,7 @@ with st.sidebar:
 
     if os.path.exists(catalog_path):
         import json
-        with open(catalog_path) as f:
+        with open(catalog_path, encoding="utf-8") as f:
             count = len(json.load(f)["papers"])
         st.info(f"📄 {count} papers indexados")
     else:

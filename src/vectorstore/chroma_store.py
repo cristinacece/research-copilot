@@ -22,9 +22,12 @@ class ChromaStore:
     def _get_collection(self):
         if self._collection is None:
             self._client = chromadb.PersistentClient(path=self._path)
+            # embedding_function=None porque pasamos embeddings precomputados
+            from chromadb.utils.embedding_functions import DefaultEmbeddingFunction
             self._collection = self._client.get_or_create_collection(
                 name=self._collection_name,
                 metadata={"hnsw:space": "cosine"},
+                embedding_function=None,
             )
         return self._collection
 
@@ -57,6 +60,8 @@ class ChromaStore:
                 "section":      str(meta.get("section",     "")),
                 "chunk_config": str(meta.get("chunk_config","small")),
                 "token_count":  int(c.get("token_count",     0)),
+                "venue":        str(meta.get("venue",        "")),
+                "doi":          str(meta.get("doi",          "")),
             }
             metadatas.append(safe_meta)
 

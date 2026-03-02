@@ -5,8 +5,12 @@ Generation layer: 4 prompting strategies, each reading its template from prompts
 
 import os
 import json
+import sys
 from typing import Optional
 from openai import OpenAI
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+from app.components.citation import format_apa
 
 MODEL_NAME = "gpt-4o-mini"
 
@@ -32,38 +36,21 @@ def _load_prompt(filename: str) -> str:
         return f.read()
 
 
-def _format_apa_inline(chunk: dict) -> str:
-    """Format a chunk's metadata as an APA in-text citation string."""
-    authors_raw = chunk.get("authors", "")
-    year        = chunk.get("year", "s.f.")
-    title       = chunk.get("paper_title", "")
-
-    # authors may be a comma-separated string
-    if authors_raw:
-        parts = [a.strip() for a in str(authors_raw).split(",") if a.strip()]
-        if len(parts) == 0:
-            author_str = "Autor desconocido"
-        elif len(parts) == 1:
-            author_str = parts[0]
-        elif len(parts) == 2:
-            author_str = f"{parts[0]} y {parts[1]}"
-        else:
-            author_str = f"{parts[0]} et al."
-    else:
-        author_str = "Autor desconocido"
-
-    return f"{author_str} ({year}). *{title}*."
-
-
 def _build_citations(chunks: list[dict]) -> list[str]:
-    """Deduplicate and return APA citation strings for all retrieved chunks."""
+    """Deduplicate and return full APA 7 citation strings for all retrieved chunks."""
     seen: set = set()
     cites: list[str] = []
     for c in chunks:
         key = c.get("paper_id", c.get("paper_title", ""))
         if key not in seen:
             seen.add(key)
-            cites.append(_format_apa_inline(c))
+            cites.append(format_apa({
+                "authors":     c.get("authors", ""),
+                "year":        c.get("year", "s.f."),
+                "paper_title": c.get("paper_title", ""),
+                "venue":       c.get("venue", ""),
+                "doi":         c.get("doi", ""),
+            }))
     return cites
 
 
