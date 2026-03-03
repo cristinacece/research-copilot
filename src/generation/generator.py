@@ -12,7 +12,7 @@ from openai import OpenAI
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from app.components.citation import format_apa
 
-MODEL_NAME = "gpt-4o-mini"
+MODEL_NAME = "gpt-4"
 
 BASE_DIR     = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 PROMPTS_DIR  = os.path.join(BASE_DIR, "prompts")
