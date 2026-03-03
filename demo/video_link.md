@@ -1,12 +1,4 @@
-# Research Copilot – Video Demo Link
-
-> **[PLACEHOLDER]** Insert the demo video link here once recorded.
->
-> Example: [Watch demo on YouTube](https://www.youtube.com/watch?v=XXXXXXXXX)
-
----
-
-## Screenshots
+# Screenshots description
 
 Screenshots are located in `demo/screenshots/`:
 
