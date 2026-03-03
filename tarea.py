@@ -30,7 +30,7 @@ BASE_DIR     = os.path.dirname(os.path.abspath(__file__))
 RUTA_PAPERS  = os.path.join(BASE_DIR, "papers")
 ARCHIVO_JSON = os.path.join(BASE_DIR, "paper_catalog.json")
 CHROMA_PATH  = os.path.join(BASE_DIR, "chroma_db")
-MODEL_NAME   = "gpt-4"
+MODEL_NAME   = "gpt-4o"
 EMBED_MODEL  = "text-embedding-3-small"
 
 # ─────────────────────────────────────────────
