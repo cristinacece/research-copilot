@@ -1,5 +1,8 @@
 # Research Copilot
 
+La seguridad alimentaria es uno de los desafíos más urgentes del siglo XXI, profundamente vinculada a la globalización y el comercio internacional. A medida que los mercados globales se integran, las naciones enfrentan tensiones entre la apertura comercial y la soberanía alimentaria. El cambio climático agudiza estas vulnerabilidades, afectando la producción agrícola y la disponibilidad de alimentos en todo el mundo. Los países en desarrollo son especialmente vulnerables a la dependencia de importaciones, la volatilidad de precios y las disrupciones geopolíticas. Este proyecto explora estos nexos a través de investigaciones académicas sobre políticas comerciales, derechos alimentarios y gobernanza global.
+
+
 **Sistema RAG (Retrieval-Augmented Generation) para análisis académico de papers sobre seguridad alimentaria y comercio internacional.**
 
 > Autora: **Cristina Celeste Tamay Blanco**
