@@ -17,8 +17,8 @@ venv/
 .venv/
 env/
 
-# ChromaDB
-chroma_db/
+# ChromaDB – incluida en git para deploy en Streamlit Cloud
+# chroma_db/
 
 # Extracted text files (regenerable)
 papers/*_texto.txt

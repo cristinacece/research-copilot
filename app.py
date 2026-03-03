@@ -12,9 +12,18 @@ import sys
 import json
 from collections import Counter
 
+import streamlit as st
+
+# ── Cargar secretos de Streamlit Cloud → os.environ (antes de cualquier import que los use)
+try:
+    for _k, _v in st.secrets.items():
+        if _k not in os.environ:
+            os.environ[_k] = str(_v)
+except Exception:
+    pass  # En local no hay st.secrets; se usa .env normalmente
+
 import pandas as pd
 import plotly.express as px
-import streamlit as st
 
 # Ensure project root is in path for src.* imports
 _BASE = os.path.dirname(os.path.abspath(__file__))
