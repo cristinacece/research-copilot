@@ -73,9 +73,26 @@ def _chat(messages: list[dict], response_format=None) -> tuple[str, int]:
 # Strategy 1 – Delimitadores
 # ─────────────────────────────────────────────
 
+def _build_context(chunks: list[dict]) -> str:
+    """Build context string with source labels so the model can cite correctly."""
+    parts = []
+    for c in chunks:
+        authors = c.get("authors", "").strip()
+        year    = c.get("year", "")
+        # Extract last name(s) for inline citation: take last token of first author
+        if authors:
+            first_author = authors.split(",")[0].strip()
+            last_name    = first_author.split()[-1] if first_author.split() else first_author
+            label = f"[Fuente: {last_name}, {year}]\n"
+        else:
+            label = ""
+        parts.append(f"{label}{c['text']}")
+    return "\n\n".join(parts)
+
+
 def strategy_delimitadores(question: str, chunks: list[dict]) -> tuple[str, list[str]]:
     template = _load_prompt("v1_delimiters.txt")
-    context  = "\n\n".join(c["text"] for c in chunks)
+    context  = _build_context(chunks)
     prompt   = template.format(context=context, question=question)
     answer, _ = _chat([{"role": "user", "content": prompt}])
     return answer, _build_citations(chunks)
@@ -87,7 +104,7 @@ def strategy_delimitadores(question: str, chunks: list[dict]) -> tuple[str, list
 
 def strategy_json(question: str, chunks: list[dict]) -> tuple[str, list[str]]:
     template = _load_prompt("v2_json_output.txt")
-    context  = "\n\n".join(c["text"] for c in chunks)
+    context  = _build_context(chunks)
     prompt   = template.format(context=context, question=question)
     raw, _ = _chat(
         [{"role": "user", "content": prompt}],
@@ -108,7 +125,7 @@ def strategy_json(question: str, chunks: list[dict]) -> tuple[str, list[str]]:
 
 def strategy_few_shot(question: str, chunks: list[dict]) -> tuple[str, list[str]]:
     template = _load_prompt("v3_few_shot.txt")
-    context  = "\n\n".join(c["text"] for c in chunks)
+    context  = _build_context(chunks)
     prompt   = template.format(context=context, question=question)
     answer, _ = _chat([{"role": "user", "content": prompt}])
     return answer, _build_citations(chunks)
@@ -120,7 +137,7 @@ def strategy_few_shot(question: str, chunks: list[dict]) -> tuple[str, list[str]
 
 def strategy_cot(question: str, chunks: list[dict]) -> tuple[str, list[str]]:
     template = _load_prompt("v4_chain_of_thought.txt")
-    context  = "\n\n".join(c["text"] for c in chunks)
+    context  = _build_context(chunks)
     prompt   = template.format(context=context, question=question)
     answer, _ = _chat([{"role": "user", "content": prompt}])
     return answer, _build_citations(chunks)
