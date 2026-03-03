@@ -3,6 +3,8 @@
 **Sistema RAG (Retrieval-Augmented Generation) para análisis académico de papers sobre seguridad alimentaria y comercio internacional.**
 
 > Autora: **Cristina Celeste Tamay Blanco**
+> Curso: Prompt Engineering — Q-Lab
+> Fecha: 2025
 
 ---
 
@@ -35,7 +37,7 @@ Usuario
    │
    ▼
 ┌─────────────────────────────────────────────────────┐
-│  Streamlit UI  (app/main.py)                        │
+│  Streamlit UI  (app.py / app/main.py)               │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌─────┐ │
 │  │   Chat   │  │ Browser  │  │Analytics │  │Cfg  │ │
 │  └──────────┘  └──────────┘  └──────────┘  └─────┘ │
@@ -126,7 +128,7 @@ Este comando extrae texto de los 21 PDFs, genera chunks con tiktoken, los embede
 ### 6. Lanzar la aplicación
 
 ```bash
-streamlit run app/main.py
+streamlit run app.py
 ```
 
 ---
@@ -164,29 +166,43 @@ python -m pytest tests/ -v
 
 ## Technical Details
 
-### Configuraciones de Chunking
+### Chunking Configurations
 
-| Config | Tamaño (tokens) | Overlap (tokens) | Uso recomendado |
-|--------|----------------|-----------------|----------------|
-| `small` | 256 | 50 | Mayor precisión, respuestas concretas |
-| `large` | 1024 | 100 | Más contexto por chunk, preguntas de síntesis |
+El pipeline implementa tres configuraciones de chunking que pueden seleccionarse desde la interfaz:
+
+| Config | Chunk Size (tokens) | Overlap (tokens) | Total Chunks (approx.) | Best For |
+|--------|--------------------|-----------------|-----------------------|----------|
+| `small` | 256 | 50 | ~2 000 | Preguntas factual específicas, alta precisión |
+| `medium` (default) | 512 | 50 | ~1 000 | Balance entre precisión y contexto |
+| `large` | 1 024 | 100 | ~500 | Preguntas de síntesis, más contexto por chunk |
 
 Modelo de tokenización: `tiktoken.encoding_for_model("gpt-4o-mini")`
 
-### Estrategias de Prompting
+### Prompt Engineering Strategies
 
-| Estrategia | Descripción | Mejor para |
-|-----------|-------------|-----------|
-| **Delimitadores** | Contexto enmarcado con `###` | Respuestas directas y factuales |
-| **JSON Estructurado** | Respuesta como `{hipotesis, variables, mecanismo}` | Análisis estructurado, exportación de datos |
-| **Few-Shot** | Calibrado con ejemplos del marco Keohane & Nye | Respuestas académicamente rigurosas |
-| **Chain-of-Thought** | Razonamiento causal en 4 pasos | Preguntas analíticas complejas |
+Cuatro estrategias implementadas y comparadas:
 
-### Modelos utilizados
+| Estrategia | Best For | Latency | Token Usage | Citation Quality |
+|-----------|----------|---------|-------------|-----------------|
+| **V1: Delimitadores** | Respuestas directas y factuales | Low | Low | Medium |
+| **V2: JSON Estructurado** | Análisis estructurado, exportación | Medium | Medium | High |
+| **V3: Few-Shot** | Respuestas académicamente rigurosas | Medium | High | High |
+| **V4: Chain-of-Thought** | Razonamiento complejo multi-paso | High | High | High |
 
-- **Embeddings**: `text-embedding-3-small` (1536 dimensiones)
-- **Generación**: `gpt-4o-mini` (temperatura 0 para reproducibilidad)
-- **Vector Store**: ChromaDB con espacio coseno
+### Embedding Model
+
+- **Model**: `text-embedding-3-small` (OpenAI)
+- **Dimensions**: 1 536
+- **Cost**: ~$0.02 / 1M tokens
+- **Vector store**: ChromaDB con espacio coseno (HNSW index)
+
+### Token Usage Estimates
+
+| Operation | Model | Estimated Cost |
+|-----------|-------|----------------|
+| Embed 21 papers (~120 k tokens) | text-embedding-3-small | ~$0.003 |
+| 50 queries (avg 2 k tokens each) | gpt-4o-mini | ~$0.10 |
+| Total project development | — | ~$1–5 |
 
 ---
 
@@ -197,14 +213,23 @@ Modelo de tokenización: `tiktoken.encoding_for_model("gpt-4o-mini")`
 
 ### Métricas de latencia promedio (referencia)
 
-| Estrategia | Latencia promedio |
-|-----------|-----------------|
-| Delimitadores | ~2-3s |
-| JSON Estructurado | ~2-3s |
-| Few-Shot | ~3-4s |
-| Chain-of-Thought | ~3-5s |
+| Estrategia | Latencia promedio | Éxito (20 preguntas) |
+|-----------|-----------------|---------------------|
+| Delimitadores | ~2–3 s | 100% |
+| JSON Estructurado | ~2–3 s | 100% |
+| Few-Shot | ~3–4 s | 100% |
+| Chain-of-Thought | ~3–5 s | 100% |
 
 *Latencias varían según carga de la API de OpenAI.*
+
+### Observaciones por tipo de pregunta
+
+| Tipo | Estrategia recomendada | Razón |
+|------|----------------------|-------|
+| Factual | Delimitadores | Respuesta directa con cita puntual |
+| Analítica | Chain-of-Thought | Razonamiento explícito paso a paso |
+| Síntesis | Few-Shot | Calibración con ejemplos académicos |
+| Fuera del corpus | JSON Estructurado | `confidence: low` indica ausencia de evidencia |
 
 ---
 
@@ -213,8 +238,16 @@ Modelo de tokenización: `tiktoken.encoding_for_model("gpt-4o-mini")`
 1. **Dependencia de OpenAI**: el sistema requiere conexión a internet y una API key válida. No funciona offline.
 2. **PDFs escaneados**: los archivos imagen sin capa OCR no pueden ser procesados por PyMuPDF. Solo se extraen PDFs con texto seleccionable.
 3. **Idioma**: el corpus y las estrategias de prompting están optimizados para español. Preguntas en otros idiomas pueden producir resultados de menor calidad.
-4. **Contexto limitado**: el modelo `gpt-4o-mini` tiene una ventana de contexto de 128K tokens, pero el pipeline usa solo los top-N chunks recuperados. Preguntas que requieran integrar muchos papers simultáneamente pueden perder información relevante.
+4. **Contexto limitado**: el pipeline usa solo los top-N chunks recuperados. Preguntas que requieran integrar muchos papers simultáneamente pueden perder información relevante.
 5. **Sin verificación de hechos**: el sistema puede generar respuestas plausibles pero incorrectas (*hallucinations*). Las citas APA son automáticas y deben verificarse contra los documentos originales.
+
+### Future Improvements
+
+1. Integrar OCR (Tesseract) para procesar PDFs escaneados.
+2. Añadir re-ranking semántico (cross-encoder) para mejorar la relevancia de los chunks recuperados.
+3. Implementar evaluación automática con métricas como RAGAS (faithfulness, answer relevancy, context precision).
+4. Soporte multilingüe: detectar el idioma de la pregunta y adaptar el prompt automáticamente.
+5. Persistencia del historial de conversación entre sesiones (base de datos SQLite o Redis).
 
 ---
 
@@ -222,6 +255,8 @@ Modelo de tokenización: `tiktoken.encoding_for_model("gpt-4o-mini")`
 
 **Cristina Celeste Tamay Blanco**
 GitHub: [@cristinacece](https://github.com/cristinacece)
+Curso: Prompt Engineering — Q-Lab
+Fecha: 2025
 
 ---
 

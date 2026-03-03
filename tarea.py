@@ -18,6 +18,9 @@ import chromadb.utils.embedding_functions as embedding_functions
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from openai import OpenAI
 from getpass import getpass
+from dotenv import load_dotenv
+
+load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env"))
 
 # ─────────────────────────────────────────────
 # CONFIGURACIÓN
@@ -228,16 +231,199 @@ def build_chromadb():
 
 
 # ─────────────────────────────────────────────
-# RETRIEVAL
+# CATÁLOGO HELPERS PARA CITAS APA
+# ─────────────────────────────────────────────
+
+_catalog_map = None
+
+
+def _get_catalog_map() -> dict:
+    """Carga el catálogo y devuelve un dict filename → paper_data (con caché)."""
+    global _catalog_map
+    if _catalog_map is not None:
+        return _catalog_map
+    if not os.path.exists(ARCHIVO_JSON):
+        return {}
+    with open(ARCHIVO_JSON, "r", encoding="utf-8") as f:
+        papers = json.load(f)["papers"]
+    _catalog_map = {p["filename"]: p for p in papers}
+    return _catalog_map
+
+
+def _format_apa(paper: dict) -> str:
+    """Formatea una referencia APA en markdown: **autores** (año). Título. *Venue*. [DOI](url)"""
+    authors = paper.get("authors", [])
+    year    = paper.get("year", "s.f.")
+    title   = paper.get("title", "Sin título")
+    venue   = paper.get("venue", "").strip()
+    doi     = paper.get("doi", "").strip()
+
+    def fmt_author(a: str) -> str:
+        """Convierte 'Nombre Apellido(s)' → 'Apellido(s), N.' para APA."""
+        parts = a.strip().split()
+        if len(parts) >= 2:
+            first = parts[0]            # primera palabra = nombre
+            last  = " ".join(parts[1:]) # resto = apellido(s)
+            return f"{last}, {first[0]}."
+        return a.strip()
+
+    if len(authors) == 0:
+        authors_str = "Autor desconocido"
+    elif len(authors) == 1:
+        authors_str = fmt_author(authors[0])
+    elif len(authors) == 2:
+        authors_str = f"{fmt_author(authors[0])}, & {fmt_author(authors[1])}"
+    else:
+        formatted = [fmt_author(a) for a in authors]
+        authors_str = ", ".join(formatted[:-1]) + f", & {formatted[-1]}"
+
+    apa = f"**{authors_str}** ({year}). {title}."
+    if venue:
+        apa += f" *{venue}*."
+    if doi:
+        url = doi if doi.startswith("http") else f"https://doi.org/{doi}"
+        apa += f" [DOI/URL]({url})"
+    return apa
+
+
+# ─────────────────────────────────────────────
+# RETRIEVAL CON CITAS APA
 # ─────────────────────────────────────────────
 
 def recuperar_contexto(pregunta: str, n_resultados: int = 3):
-    """Recupera los n_resultados chunks más relevantes para la pregunta."""
-    coleccion = get_collection()
+    """Recupera los n_resultados chunks más relevantes y devuelve citas APA."""
+    coleccion  = get_collection()
     resultados = coleccion.query(query_texts=[pregunta], n_results=n_resultados)
-    contexto = "\n\n".join(resultados["documents"][0])
-    fuentes  = list(set(meta["source"] for meta in resultados["metadatas"][0]))
-    return contexto, fuentes
+    contexto   = "\n\n".join(resultados["documents"][0])
+    filenames  = list(set(meta["source"] for meta in resultados["metadatas"][0]))
+
+    catalog = _get_catalog_map()
+    fuentes_apa = []
+    for fn in filenames:
+        if fn in catalog:
+            fuentes_apa.append(_format_apa(catalog[fn]))
+        else:
+            fuentes_apa.append(f"`{fn}`")
+
+    return contexto, fuentes_apa
+
+
+# ─────────────────────────────────────────────
+# SYSTEM PROMPTS (estructura recomendada por el profesor)
+# ─────────────────────────────────────────────
+
+SYSTEM_PROMPT_V1 = (
+    "You are Research Copilot, an expert academic assistant specializing in food "
+    "security, international trade, climate change, and political economy.\n\n"
+    "YOUR TASK:\n"
+    "Answer the question using the provided context as your primary evidence base. "
+    "You may draw on your broader academic and expert knowledge to enrich explanations, "
+    "fill conceptual gaps, and draw non-linear connections across topics and disciplines.\n\n"
+    "RULES:\n"
+    "1. Prioritize information from the provided context, but never refuse to answer — "
+    "always build the most complete response possible\n"
+    "2. When the context offers partial information, synthesize it with your expert "
+    "knowledge to deliver a thorough answer\n"
+    "3. Use only inline parenthetical citations, e.g. (Author, Year). "
+    "DO NOT add a References or Bibliography section — the system appends it automatically\n"
+    "4. Be precise and academic in your tone\n"
+    "5. Make explicit connections between ideas, even across different papers or "
+    "concepts not directly mentioned in the context\n\n"
+    "CONTEXT:\n"
+    "###\n"
+    "{context}\n"
+    "###\n\n"
+    "USER QUESTION: {question}\n\n"
+    "YOUR ANSWER:"
+)
+
+SYSTEM_PROMPT_V2 = (
+    "You are Research Copilot, an expert academic assistant in food security, "
+    "international trade, and political economy.\n\n"
+    "Answer the question drawing primarily from the provided context, but supplement "
+    "with your expert knowledge to build complete, insightful answers. Make non-linear "
+    "connections between concepts when relevant. Always provide a substantive answer — "
+    "never leave the answer field empty or say you cannot answer.\n\n"
+    "Use confidence levels as follows:\n"
+    "- 'high': answer is directly supported by the context\n"
+    "- 'medium': answer combines context with broader expert knowledge\n"
+    "- 'low': answer draws mainly on general expertise beyond the context\n\n"
+    "For citations inside 'answer', use only inline parenthetical format (Author, Year). "
+    "For the 'citations' array, use only papers that appear in the provided context — "
+    "do NOT invent papers from general knowledge.\n\n"
+    "You must respond in the following JSON format:\n\n"
+    "{\n"
+    '    "answer": "Your detailed answer here",\n'
+    '    "confidence": "high|medium|low",\n'
+    '    "citations": [\n'
+    "        {\n"
+    '            "paper": "Paper title",\n'
+    '            "authors": "Author names",\n'
+    '            "year": 2023,\n'
+    '            "quote": "Relevant quote from paper"\n'
+    "        }\n"
+    "    ],\n"
+    '    "related_topics": ["topic1", "topic2"]\n'
+    "}\n\n"
+    "CONTEXT:\n"
+    "{context}\n\n"
+    "QUESTION: {question}"
+)
+
+SYSTEM_PROMPT_V3 = (
+    "You are Research Copilot, an expert in food security, international trade, "
+    "climate change, and political economy. You build comprehensive, insightful "
+    "answers by integrating evidence from the provided papers with your broader "
+    "academic knowledge. You always answer fully — you never refuse a question.\n\n"
+    "Here are examples of how to answer:\n\n"
+    "EXAMPLE 1:\n"
+    "Question: What is the main contribution of the transformer paper?\n"
+    'Context: "We propose a new simple network architecture, the Transformer, '
+    'based solely on attention mechanisms..." (Vaswani et al., 2017, p. 1)\n'
+    "Answer: The main contribution of the transformer paper is proposing a novel "
+    "neural network architecture that relies entirely on attention mechanisms, "
+    "eliminating the need for recurrence and convolutions. According to Vaswani et al. "
+    '(2017), "We propose a new simple network architecture, the Transformer, based '
+    'solely on attention mechanisms" (p. 1).\n\n'
+    "EXAMPLE 2:\n"
+    "Question: How does BERT handle bidirectional context?\n"
+    'Context: "BERT is designed to pre-train deep bidirectional representations by '
+    'jointly conditioning on both left and right context in all layers." '
+    "(Devlin et al., 2019, p. 2)\n"
+    "Answer: BERT handles bidirectional context through its pre-training strategy. "
+    'As Devlin et al. (2019) explain, the model "jointly condition[s] on both left '
+    'and right context in all layers" (p. 2), allowing it to build deep bidirectional '
+    "representations.\n\n"
+    "---\n"
+    "Now answer the following. Use the context as your primary evidence, but "
+    "connect ideas across the corpus and draw on expert knowledge to form a complete "
+    "answer. Use only inline parenthetical citations (Author, Year) — "
+    "DO NOT add a References section at the end, the system appends it automatically.\n\n"
+    "CONTEXT:\n"
+    "{context}\n\n"
+    "QUESTION: {question}"
+)
+
+SYSTEM_PROMPT_V4 = (
+    "You are Research Copilot, an expert academic analyst in food security, "
+    "international trade, and political economy. You always produce a complete, "
+    "well-reasoned answer — you never refuse to answer a question.\n\n"
+    "CONTEXT:\n"
+    "{context}\n\n"
+    "QUESTION: {question}\n\n"
+    "Think through this step-by-step:\n"
+    "1. Identify exactly what the question is asking\n"
+    "2. Extract relevant evidence from the context — including indirect or partial evidence\n"
+    "3. Draw non-linear connections: link concepts across different papers, "
+    "identify underlying mechanisms, and relate to broader academic frameworks\n"
+    "4. Supplement with your expert knowledge to fill any gaps in the context\n"
+    "5. Formulate a comprehensive answer using inline parenthetical citations (Author, Year). "
+    "DO NOT add a References or Bibliography section — the system appends it automatically\n\n"
+    "STEP-BY-STEP REASONING:\n"
+    "[Your reasoning here]\n\n"
+    "FINAL ANSWER:\n"
+    "[Your complete answer with inline citations only]"
+)
 
 
 # ─────────────────────────────────────────────
@@ -245,35 +431,22 @@ def recuperar_contexto(pregunta: str, n_resultados: int = 3):
 # ─────────────────────────────────────────────
 
 def prompt_delimitadores(pregunta: str, n_resultados: int = 3):
-    """Estrategia 1: Delimitadores ### para aislar el contexto."""
-    contexto, fuentes = recuperar_contexto(pregunta, n_resultados)
-    prompt = f"""Eres un analista de relaciones internacionales.
-Responde la pregunta utilizando ÚNICAMENTE la información delimitada por ###.
-
-###{contexto}###
-
-Pregunta: {pregunta}"""
+    """Estrategia 1: Clear Instructions with Delimiters (V1)."""
+    contexto, fuentes_apa = recuperar_contexto(pregunta, n_resultados)
+    prompt = SYSTEM_PROMPT_V1.replace("{context}", contexto).replace("{question}", pregunta)
     client = get_openai_client()
     resp = client.chat.completions.create(
         model=MODEL_NAME,
         messages=[{"role": "user", "content": prompt}],
         temperature=0,
     )
-    return resp.choices[0].message.content, fuentes
+    return resp.choices[0].message.content, fuentes_apa
 
 
 def prompt_json(pregunta: str, n_resultados: int = 3):
-    """Estrategia 2: Respuesta estructurada como JSON."""
-    contexto, fuentes = recuperar_contexto(pregunta, n_resultados)
-    prompt = f"""Analiza el contexto y devuelve OBLIGATORIAMENTE un JSON válido con esta estructura:
-{{
-    "hipotesis": "resumen del impacto",
-    "variables_clave": ["var1", "var2"],
-    "mecanismo_transmision": "cómo afecta un factor al otro"
-}}
-
-Contexto: {contexto}
-Pregunta: {pregunta}"""
+    """Estrategia 2: JSON Structured Output (V2)."""
+    contexto, fuentes_apa = recuperar_contexto(pregunta, n_resultados)
+    prompt = SYSTEM_PROMPT_V2.replace("{context}", contexto).replace("{question}", pregunta)
     client = get_openai_client()
     resp = client.chat.completions.create(
         model=MODEL_NAME,
@@ -281,54 +454,38 @@ Pregunta: {pregunta}"""
         messages=[{"role": "user", "content": prompt}],
         temperature=0,
     )
-    return resp.choices[0].message.content, fuentes
+    return resp.choices[0].message.content, fuentes_apa
 
 
 def prompt_few_shot(pregunta: str, n_resultados: int = 3):
-    """Estrategia 3: Few-Shot calibrado con marco de interdependencia compleja."""
-    contexto, fuentes = recuperar_contexto(pregunta, n_resultados)
-    prompt = f"""Responde siguiendo el rigor del marco de la interdependencia compleja.
-Ejemplos de calibración:
-
-Pregunta: ¿Cómo la asimetría comercial afecta la disponibilidad de alimentos?
-Respuesta: La asimetría en el comercio internacional otorga poder estructural a los países exportadores. Ante un shock exógeno, los estados dependientes sufren disrupciones en la red de suministro, comprometiendo su seguridad alimentaria local (Keohane & Nye, 1977).
-
-Pregunta: ¿Qué rol juegan las organizaciones transnacionales?
-Respuesta: Reducen los costos de transacción y actúan como canales múltiples de contacto, mitigando en cierta medida la vulnerabilidad de los estados menos favorecidos (Autor, Año).
-
-Contexto: {contexto}
-Pregunta real a resolver: {pregunta}"""
+    """Estrategia 3: Few-Shot Learning (V3)."""
+    contexto, fuentes_apa = recuperar_contexto(pregunta, n_resultados)
+    prompt = SYSTEM_PROMPT_V3.replace("{context}", contexto).replace("{question}", pregunta)
     client = get_openai_client()
     resp = client.chat.completions.create(
         model=MODEL_NAME,
         messages=[{"role": "user", "content": prompt}],
-        temperature=0,
+        temperature=0.3,
     )
-    return resp.choices[0].message.content, fuentes
+    return resp.choices[0].message.content, fuentes_apa
 
 
 def prompt_cot(pregunta: str, n_resultados: int = 3):
-    """Estrategia 4: Chain-of-Thought con razonamiento causal en 3 pasos."""
-    contexto, fuentes = recuperar_contexto(pregunta, n_resultados)
-    prompt = f"""Eres un investigador de economía política internacional. Resuelve la consulta paso a paso:
-1. Identifica las variables macroeconómicas mencionadas en el contexto.
-2. Explica la cadena causal (cómo A afecta a B en términos de redes de suministro).
-3. Formula tu conclusión final.
-
-Contexto: {contexto}
-Pregunta: {pregunta}"""
+    """Estrategia 4: Chain-of-Thought Reasoning (V4)."""
+    contexto, fuentes_apa = recuperar_contexto(pregunta, n_resultados)
+    prompt = SYSTEM_PROMPT_V4.replace("{context}", contexto).replace("{question}", pregunta)
     client = get_openai_client()
     resp = client.chat.completions.create(
         model=MODEL_NAME,
         messages=[{"role": "user", "content": prompt}],
-        temperature=0,
+        temperature=0.3,
     )
-    return resp.choices[0].message.content, fuentes
+    return resp.choices[0].message.content, fuentes_apa
 
 
 # Diccionario de estrategias (para iterar en evaluación y Streamlit)
 ESTRATEGIAS = {
-    "Delimitadores":    prompt_delimitadores,
+    "Delimitadores":     prompt_delimitadores,
     "JSON Estructurado": prompt_json,
     "Few-Shot Learning": prompt_few_shot,
     "Chain-of-Thought":  prompt_cot,

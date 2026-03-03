@@ -1,17 +1,33 @@
-Responde siguiendo el rigor analítico del marco de la interdependencia compleja (Keohane & Nye, 1977).
-Tu respuesta debe ser académicamente rigurosa, basada en el contexto proporcionado.
+Eres un investigador académico experto en seguridad alimentaria, comercio internacional y economía política. Tus respuestas siguen el rigor analítico del marco de la interdependencia compleja (Keohane & Nye, 1977) y de la economía política crítica.
 
-Ejemplos de calibración:
+Calibración con ejemplos de respuestas de alta calidad académica:
 
-Pregunta: ¿Cómo la asimetría comercial afecta la disponibilidad de alimentos?
-Respuesta: La asimetría en el comercio internacional otorga poder estructural a los países exportadores. Ante un shock exógeno, los estados dependientes sufren disrupciones en la red de suministro, comprometiendo su seguridad alimentaria local. Los mecanismos de transmisión incluyen el alza de precios internacionales, la restricción de exportaciones y la volatilidad cambiaria (Keohane & Nye, 1977).
+---
+Pregunta: ¿Cómo la asimetría comercial afecta la disponibilidad de alimentos en países en desarrollo?
+Respuesta: La asimetría en el comercio internacional constituye uno de los factores estructurales más determinantes para la seguridad alimentaria de los países en desarrollo. Según el marco de la interdependencia compleja (Keohane & Nye, 1977), los Estados que dependen de importaciones alimentarias se encuentran en una posición de vulnerabilidad estructural frente a los exportadores netos, ya que carecen de los instrumentos de poder necesarios para modular los flujos comerciales en su favor.
 
-Pregunta: ¿Qué rol juegan las organizaciones transnacionales en la seguridad alimentaria?
-Respuesta: Las organizaciones transnacionales reducen los costos de transacción y actúan como canales múltiples de contacto entre Estados, mitigando en cierta medida la vulnerabilidad de los estados menos favorecidos. A través de marcos normativos como el derecho a la alimentación, establecen obligaciones que moderan el poder asimétrico de los actores dominantes del sistema agroalimentario global.
+Esta asimetría opera a través de múltiples mecanismos de transmisión. En primer lugar, la concentración del mercado global de alimentos en pocos exportadores —como Estados Unidos, Brasil, Argentina y la Unión Europea— crea una dependencia que se vuelve crítica ante shocks exógenos como conflictos armados, sequías o pandemias. La guerra en Ucrania ilustró con dramatismo este mecanismo: al interrumpirse el suministro de trigo y aceite de girasol desde el Mar Negro, los países importadores netos de África y el Medio Oriente experimentaron alzas de precios de hasta un 40%, precipitando crisis alimentarias agudas.
+
+En segundo lugar, las políticas de restricción de exportaciones adoptadas por los países productores en momentos de escasez —como las implementadas por India para el arroz en 2023— amplifican la volatilidad de los mercados internacionales y reducen drásticamente la disponibilidad en los países dependientes. La FAO ha documentado que estos episodios de restricción unilateral afectan desproporcionadamente a los países de ingreso bajo que no cuentan con reservas estratégicas ni capacidad de diversificación de proveedores.
+
+A nivel estructural, la asimetría se reproduce y profundiza a través de los acuerdos de libre comercio que obligan a los países en desarrollo a abrir sus mercados agrícolas a productores subsidiados de los países ricos, desmantelando su capacidad productiva local. Este fenómeno, documentado extensamente para América Latina, ha generado una paradoja: regiones con alta vocación agrícola se han convertido en importadoras netas de alimentos básicos, incrementando su exposición a la volatilidad internacional.
+
+En conclusión, la asimetría comercial no solo afecta la disponibilidad de alimentos en el corto plazo, sino que erosiona la soberanía alimentaria y la capacidad de los Estados de garantizar el derecho a la alimentación de su población. La interdependencia compleja, lejos de ser simétrica, reproduce jerarquías de poder que consolidan la vulnerabilidad de los países en desarrollo.
+---
+
+Pregunta: ¿Qué rol juegan las organizaciones internacionales en la gobernanza de la seguridad alimentaria global?
+Respuesta: Las organizaciones internacionales cumplen un rol central pero frecuentemente contradictorio en la gobernanza de la seguridad alimentaria global. Por un lado, instituciones como la FAO, el PMA y el FIDA proveen marcos normativos, coordinación técnica y asistencia humanitaria que mitigan las consecuencias más agudas de la inseguridad alimentaria. Por otro lado, las reglas del sistema de comercio multilateral de la OMC —especialmente el Acuerdo sobre la Agricultura de la Ronda Uruguay— han impuesto restricciones al "espacio normativo" de los Estados en desarrollo para implementar políticas agrícolas proteccionistas, generando tensiones con los objetivos de seguridad alimentaria.
+
+La FAO ha documentado que, pese a los avances en la coordinación internacional, los mecanismos de gobernanza global de la alimentación carecen de poder vinculante para impedir que los países ricos mantengan subsidios agrícolas que distorsionan los mercados mundiales y perjudican a los productores de países en desarrollo. Esta brecha entre normas aspiracionales y mecanismos coercitivos es característica de la interdependencia compleja: los actores más poderosos tienen mayor capacidad de moldear las reglas del juego en su favor.
+
+[Continúa desarrollando el argumento con la misma profundidad...]
+---
+
+Ahora responde la siguiente pregunta con el mismo nivel de extensión y rigor académico. Tu respuesta debe tener al menos 6 párrafos completos. Usa citas en texto (Apellido, Año) o (Organización, Año) cuando uses información del contexto. NO incluyas lista de referencias al final.
 
 Contexto académico:
 {context}
 
-Pregunta real a resolver: {question}
+Pregunta: {question}
 
-Respuesta analítica:
+Respuesta analítica extensa:

@@ -8,12 +8,18 @@ Ejecutar:
 """
 
 import os
+import sys
 import json
 from collections import Counter
 
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+
+# Ensure project root is in path for src.* imports
+_BASE = os.path.dirname(os.path.abspath(__file__))
+if _BASE not in sys.path:
+    sys.path.insert(0, _BASE)
 
 from tarea import (
     ARCHIVO_JSON,
@@ -22,6 +28,16 @@ from tarea import (
     get_collection,
     recuperar_contexto,
 )
+from src.rag_pipeline import query as rag_query
+from app.components.citation import format_apa
+
+# Map tarea.py strategy names → src pipeline strategy names
+_STRATEGY_MAP = {
+    "Delimitadores":     "Delimitadores",
+    "JSON Estructurado": "JSON Estructurado",
+    "Few-Shot Learning": "Few-Shot",
+    "Chain-of-Thought":  "Chain-of-Thought",
+}
 
 # ─────────────────────────────────────────────
 # CONFIGURACIÓN DE PÁGINA
@@ -43,6 +59,69 @@ st.set_page_config(
 def load_catalog():
     with open(ARCHIVO_JSON, "r", encoding="utf-8") as f:
         return json.load(f)["papers"]
+
+
+def _render_citations(fuentes: list):
+    """Muestra la bibliografía en formato APA 7 al final de cada respuesta."""
+    if not fuentes:
+        return
+    st.markdown("---")
+    st.markdown("#### 📚 Referencias bibliográficas (APA 7)")
+    for fuente in fuentes:
+        st.markdown(fuente)
+        st.markdown("")
+
+
+def _render_response(content: str, fuentes: list, estrategia: str):
+    """Renderiza la respuesta del asistente según la estrategia usada."""
+    if estrategia == "JSON Estructurado":
+        try:
+            data = json.loads(content)
+
+            # Respuesta principal
+            st.markdown(data.get("answer", content))
+
+            # Hipótesis
+            if data.get("hipotesis"):
+                st.markdown(f"**Hipótesis central:** {data['hipotesis']}")
+
+            # Mecanismo de transmisión
+            if data.get("mecanismo_transmision"):
+                st.markdown(f"**Mecanismo de transmisión:** {data['mecanismo_transmision']}")
+
+            # Implicaciones de políticas
+            if data.get("implicaciones_politicas"):
+                st.info(f"**Implicaciones para políticas:** {data['implicaciones_politicas']}")
+
+            # Limitaciones
+            if data.get("limitaciones"):
+                st.markdown(f"*Limitaciones:* {data['limitaciones']}")
+
+            # Confianza
+            confidence = str(data.get("confidence", "")).lower()
+            conf_map = {"high": ("success", "Alta"), "medium": ("warning", "Media"), "low": ("error", "Baja")}
+            if confidence in conf_map:
+                fn, label = conf_map[confidence]
+                getattr(st, fn)(f"Confianza del modelo: **{label}**")
+
+            # Variables clave
+            variables = data.get("variables_clave", [])
+            if variables:
+                st.markdown("**Variables clave:** " + " · ".join(f"`{v}`" for v in variables))
+
+            # Temas relacionados
+            topics = data.get("related_topics", [])
+            if topics:
+                st.markdown("**Temas relacionados:** " + " · ".join(f"`{t}`" for t in topics))
+
+        except (json.JSONDecodeError, TypeError):
+            st.markdown(content)
+    else:
+        st.markdown(content)
+
+    # Referencias APA del catálogo (todas las estrategias)
+    if fuentes:
+        _render_citations(fuentes)
 
 
 # ─────────────────────────────────────────────
@@ -110,10 +189,14 @@ with tab_chat:
             "Estrategia de prompting",
             list(ESTRATEGIAS.keys()),
             help=(
-                "**Delimitadores**: Contexto delimitado con ###.\n\n"
-                "**JSON Estructurado**: Respuesta como hipótesis + variables + mecanismo.\n\n"
-                "**Few-Shot Learning**: Calibrado con ejemplos del marco de Keohane & Nye.\n\n"
-                "**Chain-of-Thought**: Razonamiento causal en 3 pasos."
+                "**Delimitadores**: Instrucciones claras con contexto delimitado por ###. "
+                "Cita fuentes en formato APA.\n\n"
+                "**JSON Estructurado**: Respuesta estructurada con respuesta, confianza, "
+                "citas y temas relacionados.\n\n"
+                "**Few-Shot Learning**: Calibrado con ejemplos de respuestas académicas "
+                "con citas en texto.\n\n"
+                "**Chain-of-Thought**: Razonamiento paso a paso con conclusión final "
+                "y citas APA."
             ),
         )
     with ctrl_col2:
@@ -127,13 +210,16 @@ with tab_chat:
 
     for msg in st.session_state.messages:
         with st.chat_message(msg["role"]):
-            st.markdown(msg["content"])
-            if msg.get("fuentes"):
-                with st.expander("📚 Fuentes consultadas"):
-                    for fuente in msg["fuentes"]:
-                        st.markdown(f"- `{fuente}`")
-            if msg.get("estrategia"):
-                st.caption(f"Estrategia: {msg['estrategia']}")
+            if msg["role"] == "assistant":
+                _render_response(
+                    msg["content"],
+                    msg.get("fuentes", []),
+                    msg.get("estrategia", ""),
+                )
+                if msg.get("estrategia"):
+                    st.caption(f"Estrategia: {msg['estrategia']}")
+            else:
+                st.markdown(msg["content"])
 
     # Input de usuario
     pregunta = st.chat_input("Escribe tu pregunta de investigación...")
@@ -148,19 +234,42 @@ with tab_chat:
         with st.chat_message("assistant"):
             with st.spinner(f"Consultando corpus con estrategia *{estrategia_nombre}*..."):
                 try:
-                    funcion = ESTRATEGIAS[estrategia_nombre]
-                    respuesta, fuentes = funcion(pregunta, n_resultados=n_resultados)
+                    src_strategy = _STRATEGY_MAP.get(estrategia_nombre, "Delimitadores")
+                    result = rag_query(
+                        question=pregunta,
+                        strategy=src_strategy,
+                        n=n_resultados,
+                        chunk_config="small",
+                    )
+                    respuesta = result["answer"]
+                    chunks    = result["chunks_used"]
 
-                    st.markdown(respuesta)
-                    with st.expander("📚 Fuentes consultadas"):
-                        for fuente in fuentes:
-                            st.markdown(f"- `{fuente}`")
-                    st.caption(f"Estrategia: {estrategia_nombre} · Chunks: {n_resultados}")
+                    # Build APA 7 citations from retrieved chunks
+                    seen: set = set()
+                    fuentes: list = []
+                    for c in chunks:
+                        key = c.get("paper_id") or c.get("paper_title") or ""
+                        if key and key not in seen:
+                            seen.add(key)
+                            fuentes.append(format_apa({
+                                "authors":     c.get("authors", ""),
+                                "year":        c.get("year", "s.f."),
+                                "paper_title": c.get("paper_title", ""),
+                                "venue":       c.get("venue", ""),
+                                "doi":         c.get("doi", ""),
+                            }))
+
+                    _render_response(respuesta, fuentes, estrategia_nombre)
+                    st.caption(
+                        f"Estrategia: {estrategia_nombre} · "
+                        f"Chunks: {n_resultados} · "
+                        f"Latencia: {result['latency_s']}s"
+                    )
 
                     st.session_state.messages.append({
-                        "role":      "assistant",
-                        "content":   respuesta,
-                        "fuentes":   fuentes,
+                        "role":       "assistant",
+                        "content":    respuesta,
+                        "fuentes":    fuentes,
                         "estrategia": estrategia_nombre,
                     })
 

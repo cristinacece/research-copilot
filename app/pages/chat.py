@@ -16,6 +16,7 @@ sys.path.insert(0, BASE_DIR)
 from src.rag_pipeline import query as rag_query
 from src.generation.generator import STRATEGIES
 from app.components.styles import ACADEMIC_CSS
+from app.components.citation import format_apa
 
 st.markdown(ACADEMIC_CSS, unsafe_allow_html=True)
 st.title("💬 Chat con los Papers")
@@ -53,14 +54,24 @@ if "total_tokens" not in st.session_state:
 if "query_count" not in st.session_state:
     st.session_state.query_count = 0
 
+
+def _render_references(citations: list[str]) -> None:
+    """Render the APA 7 bibliography section below an answer."""
+    if not citations:
+        return
+    st.markdown("---")
+    st.markdown("#### 📚 Referencias bibliográficas (APA 7)")
+    for cite in citations:
+        st.markdown(cite)
+        st.markdown("")   # blank line between entries
+
+
 # ── Render existing history ───────────────────────────────────────────────────
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
         if msg.get("citations"):
-            with st.expander("📚 Citas APA"):
-                for cite in msg["citations"]:
-                    st.markdown(f'<div class="citation-block">{cite}</div>', unsafe_allow_html=True)
+            _render_references(msg["citations"])
         if msg.get("chunks"):
             with st.expander("🔍 Chunks recuperados"):
                 for c in msg["chunks"]:
@@ -108,20 +119,31 @@ if question:
                     n=n_chunks,
                     chunk_config=chunk_config,
                 )
-                answer    = result["answer"]
-                citations = result["citations"]
-                chunks    = result["chunks_used"]
-                latency   = result["latency_s"]
+                answer  = result["answer"]
+                chunks  = result["chunks_used"]
+                latency = result["latency_s"]
+
+                # Build citations from chunks (primary source)
+                seen: set = set()
+                citations: list[str] = []
+                for c in chunks:
+                    key = c.get("paper_id") or c.get("paper_title") or ""
+                    if key and key not in seen:
+                        seen.add(key)
+                        citations.append(format_apa({
+                            "authors":     c.get("authors", ""),
+                            "year":        c.get("year", "s.f."),
+                            "paper_title": c.get("paper_title", ""),
+                            "venue":       c.get("venue", ""),
+                            "doi":         c.get("doi", ""),
+                        }))
+
+                # Fallback: use citations returned by the strategy if none built
+                if not citations:
+                    citations = result.get("citations", [])
 
                 st.markdown(answer)
-
-                if citations:
-                    with st.expander("📚 Citas APA"):
-                        for cite in citations:
-                            st.markdown(
-                                f'<div class="citation-block">{cite}</div>',
-                                unsafe_allow_html=True,
-                            )
+                _render_references(citations)
 
                 if chunks:
                     with st.expander("🔍 Chunks recuperados"):
@@ -142,10 +164,10 @@ if question:
                 )
 
                 st.session_state.messages.append({
-                    "role":     "assistant",
-                    "content":  answer,
+                    "role":      "assistant",
+                    "content":   answer,
                     "citations": citations,
-                    "chunks":   chunks,
+                    "chunks":    chunks,
                     "meta": {
                         "strategy":     strategy,
                         "latency_s":    latency,
